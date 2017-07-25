@@ -1,5 +1,6 @@
 # squeal output folders
 pages/
+pages/favicon.ico
 www/
 
 # Byte-compiled / optimized / DLL files
