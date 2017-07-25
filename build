@@ -3,12 +3,12 @@
 
 PAGES=../app/pages
 CONTENT=content
-TEMPLATES=templates
+cd ${CONTENT}
 
 function min_css() {
 	echo Minimizing css...
 
-    cat ${CONTENT}/style.css | \
+    cat style.css | \
         tr -s ' ' | \
         tr -d '\n' | \
         sed -e 's/ {/{/g' | \
@@ -19,7 +19,7 @@ function min_css() {
         sed -e 's/ }/}/g' | \
         sed -e 's/, /,/g' | \
         sed -e 's/ ,/,/g'  \
-	>${TEMPLATES}/style_min.css
+	>style_min.css
 }
 
 function build() {
@@ -28,29 +28,22 @@ function build() {
 	FOOTER=footer
 
 	[ -d ${DEST} ] || (mkdir -p ${DEST} ; echo "  Making ${DEST}")
-	[ -f $1/footer ] && (FOOTER=$1/footer ; echo "  New footer")
+	[ -f $1/footer ] && (FOOTER=$1/footer ; echo "  New footer ${FOOTER}")
 
 	echo "  Page $2  ${DEST}/${TITLE}..."
 	jinja2  -D title=${TITLE} 		\
-            -D content=${CONTENT}/$1/$2 		\
+            -D content=/$1/$2 		\
             -D style=style_min.css 	\
-            -D footer=${CONTENT}/$1/${FOOTER} 	\
+            -D footer=${FOOTER} 	\
 		page.tmpl> ${DEST}/${TITLE}
 }
 
 
 
 echo Building page list...
-pushd ${CONTENT}
 find . -name '*.content' > /tmp/squeal_list
-popd
-
 
 min_css
-cd $(dirname $0)/${TEMPLATES}
-
-echo Temporary copy...
-cp -r ../${CONTENT} .
 
 
 echo Building pages...

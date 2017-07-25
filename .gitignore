@@ -1,6 +1,5 @@
 # squeal output folders
-templates/content/
-templates/style_min.css
+content/style_min.css
 www/
 
 # Byte-compiled / optimized / DLL files
