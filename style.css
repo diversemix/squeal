@@ -61,6 +61,6 @@ body>div {
     background-color: #eee; margin-left: 5vw; height: 2vw; border-right: 1px solid #333;
 }
 body {
-    display:flex; width:95vw; min-height:80vh; height:80vh;flex-direction:column; background-color:#aaa; 
+    display:flex; width:95vw; min-height:80vh; flex-direction:column; background-color:#aaa; 
 }
 
