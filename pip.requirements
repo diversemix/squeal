@@ -1,2 +1,8 @@
-jinja2
-jinja2-cli
+click==6.7
+Flask==0.12.2
+itsdangerous==0.24
+Jinja2==2.9.6
+jinja2-cli==0.6.0
+MarkupSafe==1.0
+Werkzeug==0.12.2
+wheel==0.24.0

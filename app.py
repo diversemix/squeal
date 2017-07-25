@@ -42,5 +42,6 @@ load_pages()
 
 
 if __name__ == "__main__":
-
+    print "Started Squeal..."
     app.run()
+    print "Squeal done."

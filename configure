@@ -17,4 +17,7 @@ then
 	virtualenv env
 fi
 
-. env/bin/activate
+echo "In order to start the environment please execute the following commands:"
+echo "    . env/bin/activate"
+echo "    pip install -r pip.requirements"
+echo
