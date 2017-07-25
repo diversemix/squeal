@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [ ! $(which pip) ]
+then
+	echo Installing missing: pip
+	sudo easy_install pip
+fi
+
+if [ ! $(which virtualenv) ]
+then
+	echo Installing missing: virtualenv
+	sudo pip install virtualenv
+fi
+
+if [ ! -d env ]
+then
+	virtualenv env
+fi
+
+. env/bin/activate

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cat style.css | \
+	tr -s ' ' | \
+	tr -d '\n' | \
+	sed -e 's/ {/{/g' | \
+	sed -e 's/{ /{/g' | \
+	sed -e 's/; /;/g' | \
+	sed -e 's/ ;/;/g' | \
+	sed -e 's/ :/;/g' | \
+	sed -e 's/ }/}/g' | \
+	sed -e 's/, /,/g' | \
+	sed -e 's/ ,/,/g'  \
+	>content/style_min.css

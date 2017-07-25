@@ -1,0 +1,42 @@
+#!/bin/bash
+#set -x
+
+cd $(dirname $0)
+
+PAGES=pages
+CONTENT=content
+
+function min_css() {
+	echo Minimizing css...
+	./min_css
+}
+
+function build() {
+	TITLE=$(echo $2|cut -d. -f1)
+	DEST=${PAGES}/$1
+	FOOTER=${CONTENT}/footer
+
+	[ -d ${DEST} ] || (mkdir -p ${DEST} ; echo "  Making ${DEST}")
+	[ -f $1/footer ] && (FOOTER=$1/footer ; echo "  New footer")
+
+	echo "  Page $2  ${DEST}/${TITLE}..."
+	jinja2  -D title=${TITLE} 			\
+		-D content=${CONTENT}/$1/$2 		\
+		-D style=${CONTENT}/style_min.css 	\
+		-D footer=${FOOTER} 			\
+		page.tmpl> ${DEST}/${TITLE}
+}
+
+
+min_css
+
+echo Building page list...
+pushd ${CONTENT}
+find . -name '*.content' > /tmp/squeal_list
+popd
+
+echo Building pages...
+for f in $(cat /tmp/squeal_list)
+do 
+	build $(dirname ${f}) $(basename ${f}) 
+done
