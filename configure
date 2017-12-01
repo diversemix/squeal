@@ -4,20 +4,31 @@ if [ ! $(which pip) ]
 then
 	echo Installing missing: pip
 	sudo easy_install pip
+else
+	echo Found $(which pip)
 fi
 
 if [ ! $(which virtualenv) ]
 then
 	echo Installing missing: virtualenv
 	sudo pip install virtualenv
+else
+	echo Found $(which virtualenv)
 fi
 
 if [ ! -d env ]
 then
 	virtualenv env
+else 
+	echo Found virtualenv: env
 fi
 
-echo "In order to start the environment please execute the following commands:"
-echo "    . env/bin/activate"
-echo "    pip install -r pip.requirements"
+source env/bin/activate && pip install -r pip.requirements
 echo
+echo "In order to start the environment please execute the following command:"
+echo "    . env/bin/activate"
+echo
+echo "The app can be built with: "
+echo "    ./build" 
+echo 
+echo "This will put pages into the app/pages folder." 
