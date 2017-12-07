@@ -20,11 +20,15 @@ git clone git@github.com:diversemix/squeal.git
 cd squeal
 ```
 
-Next configure the enviroment and build the stock test pages with:
+Next configure the environment, rename the example folder then build the stock test pages with:
 
 ```
 ./configure
 . env/bin/activate
+```
+
+```
+mv example_content content
 ./build
 ```
 > ### Note
