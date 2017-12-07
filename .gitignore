@@ -2,6 +2,7 @@
 content/
 www/
 docker-compose.yml
+alpine-flask/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
